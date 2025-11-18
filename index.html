@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome ChatGPT Prompts - Curated Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <header class="site-header">
+            <div class="header-left">
+                <h1 class="site-title">Awesome ChatGPT Prompts</h1>
+                <p class="site-slogan">Curated collection of powerful AI prompts</p>
+                <div class="site-description">
+                    <p class="platform-hint">Select your AI platform:</p>
+                    <div class="platform-pills">
+                        <button class="platform-tag active" data-platform="chatgpt" data-url="https://chat.openai.com">ChatGPT</button>
+                        <button class="platform-tag" data-platform="claude" data-url="https://claude.ai/new">Claude</button>
+                        <button class="platform-tag" data-platform="github-copilot" data-url="https://github.com/copilot">GitHub Copilot</button>
+                        <button class="platform-tag" data-platform="grok" data-url="https://x.com/i/grok">Grok</button>
+                        <button class="platform-tag" data-platform="perplexity" data-url="https://www.perplexity.ai">Perplexity</button>
+                        <button class="platform-tag" data-platform="mistral" data-url="https://chat.mistral.ai/chat">Mistral</button>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="dark-mode-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">
+                    <svg class="mode-icon sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="mode-icon moon-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <div class="search-container">
+                    <div class="prompt-count">
+                        <span class="count-label">All Prompts</span>
+                        <span class="count-number" id="promptCount">0</span>
+                    </div>
+                    <input type="text" id="searchInput" placeholder="Search prompts...">
+                    <ul id="searchResults"></ul>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="main-content-header">
+                    <div class="header-content">
+                        <p class="header-description">Customize your experience:</p>
+                        <div class="platform-selectors">
+                            <span>Reply in</span>
+                            <select id="languageSelect" class="custom-select">
+                                <option value="English">English</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="French">French</option>
+                                <option value="German">German</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="Japanese">Japanese</option>
+                                <option value="custom">Custom...</option>
+                            </select>
+                            <input type="text" id="customLanguage" class="custom-input" placeholder="Enter language" style="display: none;">
+                            <span>using</span>
+                            <select id="toneSelect" class="custom-select">
+                                <option value="professional">professional</option>
+                                <option value="casual">casual</option>
+                                <option value="technical">technical</option>
+                                <option value="friendly">friendly</option>
+                                <option value="formal">formal</option>
+                                <option value="custom">custom...</option>
+                            </select>
+                            <input type="text" id="customTone" class="custom-input" placeholder="Enter tone" style="display: none;">
+                            <span>tone for</span>
+                            <select id="audienceSelect" class="custom-select">
+                                <option value="everyone">everyone</option>
+                                <option value="developers">developers</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-lg markdown-body">
+                    <!-- Prompt cards will be injected here by JavaScript -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal for prompt details -->
+    <div class="modal-overlay" id="modalOverlay" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title"></h2>
+                <div class="modal-actions">
+                    <button class="modal-copy-button" title="Copy prompt">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                    <button class="modal-close" title="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-content"></div>
+            <div class="modal-footer">
+                <div class="modal-footer-left">
+                    <a class="modal-contributor" target="_blank" rel="noopener"></a>
+                </div>
+                <div class="modal-footer-right">
+                    <button class="modal-chat-button" onclick="openModalChat()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Start Chat
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
